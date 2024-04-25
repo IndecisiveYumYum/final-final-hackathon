@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqv4b1urpdj8x"]
+
+[ext_resource type="Texture2D" uid="uid://dtjtmc1pkmp7n" path="res://assets/characterSpriteSheet.png" id="1_1wyaw"]
+[ext_resource type="Script" path="res://Ghost.gd" id="2_sfvr8"]
+
+[node name="Ghost" type="Sprite2D"]
+modulate = Color(0.443137, 0.443137, 0.443137, 1)
+show_behind_parent = true
+position = Vector2(369, 298)
+texture = ExtResource("1_1wyaw")
+hframes = 8
+vframes = 3
+frame = 18
+script = ExtResource("2_sfvr8")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bham13f353wu"]
+
+[ext_resource type="Texture2D" uid="uid://x32s71tev28w" path="res://assets/download (1) (1).png" id="1_7da0n"]
+[ext_resource type="Script" path="res://Rope.gd" id="2_e86a3"]
+
+[node name="Rope" type="Sprite2D"]
+texture_repeat = 2
+rotation = -1.5708
+scale = Vector2(1, 1.625)
+texture = ExtResource("1_7da0n")
+region_enabled = true
+region_rect = Rect2(7, 0, 2, 0)
+script = ExtResource("2_e86a3")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 150)

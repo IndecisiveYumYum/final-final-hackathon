@@ -1,0 +1,153 @@
+[gd_scene load_steps=15 format=3 uid="uid://2egk00u27a2k"]
+
+[ext_resource type="Script" path="res://scripts/basic_movement_platformer.gd" id="1_nv1df"]
+[ext_resource type="Texture2D" uid="uid://dtjtmc1pkmp7n" path="res://assets/characterSpriteSheet.png" id="2_6icsi"]
+[ext_resource type="Texture2D" uid="uid://bjm1h3mrttn1s" path="res://assets/shield.png" id="3_7wgrt"]
+[ext_resource type="Texture2D" uid="uid://dqooo3tohqnmr" path="res://assets/bow.png" id="4_3oq1q"]
+[ext_resource type="Texture2D" uid="uid://bqnutfcmfomlm" path="res://assets/sword.png" id="5_jevle"]
+[ext_resource type="Texture2D" uid="uid://be4uccjmbak3v" path="res://assets/boom.png" id="6_q2mx3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jl4la"]
+
+[sub_resource type="Animation" id="Animation_2pyta"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_paqjk"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 4]
+}
+
+[sub_resource type="Animation" id="Animation_k5ewf"]
+resource_name = "walk_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 4]
+}
+
+[sub_resource type="Animation" id="Animation_00dtg"]
+resource_name = "walk_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [22, 21]
+}
+
+[sub_resource type="Animation" id="Animation_mf2n3"]
+resource_name = "walk_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_s6hs6"]
+resource_name = "walk_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vbyu8"]
+_data = {
+"RESET": SubResource("Animation_2pyta"),
+"jump": SubResource("Animation_paqjk"),
+"walk_down": SubResource("Animation_k5ewf"),
+"walk_left": SubResource("Animation_00dtg"),
+"walk_right": SubResource("Animation_mf2n3"),
+"walk_up": SubResource("Animation_s6hs6")
+}
+
+[node name="MainCharacter" type="CharacterBody2D"]
+script = ExtResource("1_nv1df")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jl4la")
+
+[node name="CharacterSpriteSheet" type="Sprite2D" parent="."]
+texture = ExtResource("2_6icsi")
+hframes = 8
+vframes = 3
+frame = 18
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vbyu8")
+}
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(13, -5.96046e-08)
+scale = Vector2(0.0541667, 0.0540713)
+texture = ExtResource("3_7wgrt")
+
+[node name="Bow" type="Sprite2D" parent="."]
+position = Vector2(9, 2)
+rotation = 0.837758
+scale = Vector2(0.0405192, 0.0388416)
+texture = ExtResource("4_3oq1q")
+flip_h = true
+
+[node name="Sword" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-17, 2)
+rotation = 0.846485
+scale = Vector2(0.144444, 0.135556)
+texture = ExtResource("5_jevle")
+
+[node name="Boom" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(13, 2)
+scale = Vector2(0.0290224, 0.0358607)
+texture = ExtResource("6_q2mx3")
